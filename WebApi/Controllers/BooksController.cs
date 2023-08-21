@@ -1,10 +1,8 @@
-﻿using Azure;
-using Entities.Models;
+﻿using Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using WebApi.Repositories;
+using Repositories.EFCore;
 
 namespace WebApi.Controllers
 {
