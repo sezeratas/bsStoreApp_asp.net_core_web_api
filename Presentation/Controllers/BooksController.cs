@@ -1,15 +1,17 @@
 ﻿using Entities.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using Repositories.Contracts;
-using Repositories.EFCore;
 using Services.Contract;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace WebApi.Controllers
+namespace Presentation.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/books")]
     public class BooksController : ControllerBase
     {
         private readonly IServiceManager _manager;
@@ -62,8 +64,8 @@ namespace WebApi.Controllers
                 if (book is null)
                     return BadRequest(); //400
 
-               _manager.BookService .CreateOneBook(book);
-                
+                _manager.BookService.CreateOneBook(book);
+
 
                 return StatusCode(201, book);
             }
@@ -109,7 +111,7 @@ namespace WebApi.Controllers
         public IActionResult PartiallyUpdateOneBook([FromRoute(Name = "id")] int id,
             [FromBody] JsonPatchDocument<Book> bookPatch)
         {
-            try 
+            try
             {
                 //  check entity
                 var entity = _manager
